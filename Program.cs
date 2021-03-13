@@ -11,7 +11,8 @@ namespace MediaLibraryLab
         {
             logger.Info("Program started");
 
-            
+            string scrubbedFile = FileScrubber.ScrubMovies("movies.csv");
+            logger.Info(scrubbedFile);
 
             string userChoice;
             do {
