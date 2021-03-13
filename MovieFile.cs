@@ -8,7 +8,7 @@ namespace MediaLibraryLab
 {
     public class MovieFile
     {
-        public string scrubbedFile { get; set; }
+        public string filePath { get; set; }
         public List<Movie> Movies { get; set; }
         public List<Media> Medias { get; set; }
 
@@ -16,12 +16,12 @@ namespace MediaLibraryLab
 
         public MovieFile (string movieScrubbedFile) 
         {
-            scrubbedFile = movieScrubbedFile;
+            filePath = movieScrubbedFile;
             Movies = new List<Movie>();
 
             try
             {
-                StreamReader sr = new StreamReader(scrubbedFile);
+                StreamReader sr = new StreamReader(filePath);
                 while (!sr.EndOfStream) {
                     string line = sr.ReadLine();
                     string[] array = line.Split(',');
@@ -48,7 +48,7 @@ namespace MediaLibraryLab
 
             try {
                 movie.mediaId = Movies.Max(m => m.mediaId) + 1;
-                StreamWriter sw = new StreamWriter(scrubbedFile, append: true);
+                StreamWriter sw = new StreamWriter(filePath, append: true);
                 sw.WriteLine("{0},{1},{2},{3},{4}", movie.mediaId, movie.title, string.Join("|", movie.genres), movie.director, movie.runningTime);
                 sw.Close();
 
