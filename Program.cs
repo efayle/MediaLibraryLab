@@ -11,7 +11,18 @@ namespace MediaLibraryLab
         {
             logger.Info("Program started");
 
-            Console.WriteLine("Hello World!");
+            string userChoice;
+            do {
+                //Menu options
+                Console.WriteLine("1.) Add movie\n2.) Display movie\nType 'Enter' to quit");
+                userChoice = Console.ReadLine();
+
+                if (userChoice == "1") {
+                    //Add movie
+                } else if (userChoice == "2") {
+                    //Display movies
+                }
+            } while (userChoice == "1" || userChoice == "2");
 
             logger.Info("Program ended");
         }
