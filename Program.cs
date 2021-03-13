@@ -11,8 +11,8 @@ namespace MediaLibraryLab
         {
             logger.Info("Program started");
 
-            string scrubbedFile = FileScrubber.ScrubMovies("movies.csv");
-            logger.Info(scrubbedFile);
+            string movieFilePath = Directory.GetCurrentDirectory() + "\\movies.scrubbed.csv";
+            MovieFile movieFile = new MovieFile(movieFilePath);
 
             string userChoice;
             do {
@@ -22,8 +22,45 @@ namespace MediaLibraryLab
 
                 if (userChoice == "1") {
                     //Add movie
+                    Movie movie = new Movie();
+
+                    string userResponse;
+                    Console.WriteLine("Do you want to enter a movie? ");
+                    userResponse = Console.ReadLine().ToUpper();
+                    if (userResponse == "Y") {
+                        //Movie information
+                        Console.WriteLine("Enter movie title: ");
+                        movie.title = Console.ReadLine();
+                        
+                        string userInput;
+                        do {
+                            Console.WriteLine("Enter genre (or type 'done' to quit) ");
+                            userInput = Console.ReadLine();
+
+                            if (userInput != "done" && userInput.Length > 0) {
+                                movie.genres.Add(userInput);
+                            }
+                        } while (userInput != "done");
+
+                        if (movie.genres.Count == 0) {
+                            movie.genres.Add("(no genres listed)");
+                        }
+                        
+                        Console.WriteLine("Enter movie director: ");
+                        movie.director = Console.ReadLine();
+
+                        // Console.WriteLine("Enter running time: (h:m:s) ");
+                        // string runTime = null;
+                        // runTime = movie.runningTime.ToString()
+
+                        movieFile.AddMovie(movie);
+                    }
                 } else if (userChoice == "2") {
                     //Display movies
+
+                    foreach (Movie m in movieFile.Movies) {
+                        Console.WriteLine(m.Display());
+                    }
                 }
             } while (userChoice == "1" || userChoice == "2");
 
