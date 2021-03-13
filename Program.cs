@@ -11,6 +11,8 @@ namespace MediaLibraryLab
         {
             logger.Info("Program started");
 
+            
+
             string userChoice;
             do {
                 //Menu options

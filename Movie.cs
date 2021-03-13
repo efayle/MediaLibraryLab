@@ -6,7 +6,6 @@ namespace MediaLibraryLab
     public class Movie : Media
     {
         public string director { get; set; }
-        // public TimeSpan runningTime { get; set; }
         public TimeSpan runningTime { get; set; }
 
         public override string Display()
